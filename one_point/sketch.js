@@ -8,6 +8,8 @@ let g;
 let h;
 
 
+
+
 function preload(){
   userStartAudio();
   // oscillator, envelope, and volume
@@ -21,7 +23,6 @@ function preload(){
 
 function setup() {
   createCanvas((windowWidth - (windowWidth * 0.47)), (windowHeight - (windowHeight * 0.1)));
-  // background(20);
   let c1 = color(20);
   let c2 = color(10);
   for(let y = 0; y < height; y++) {
@@ -41,58 +42,67 @@ function setup() {
   btna.mousePressed(typeSine);
   btna.position((innerWidth * 0.32),(innerHeight * 0.31));
   btna.size(100,25);
+  btna.style('background-color', 'red');
+  btna.style('color', '#fff');
     
   btnb = createButton('SQUARE');
   btnb.mousePressed(typeSquare);
   btnb.position((innerWidth * 0.42),(innerHeight * 0.31));
   btnb.size(100,25);
+  btnb.style('background-color', 'red');
+  btnb.style('color', '#fff');
 
   btnc = createButton('TRIANGLE');
   btnc.mousePressed(typeTri);
   btnc.position((innerWidth * 0.52),(innerHeight * 0.31));
   btnc.size(100,25);
+  btnc.style('background-color', 'red');
+  btnc.style('color', '#fff');
 
   btnd = createButton('SAWTOOTH');
   btnd.mousePressed(typeSaw);
   btnd.position((innerWidth * 0.62),(innerHeight * 0.31));
   btnd.size(100,25);
+  btnd.style('background-color', 'red');
+  btnd.style('color', '#fff');
 
 // Vol/ADSR SliderS
 
-  sliderV = createSlider(0, 1, 1, 0.01);
+  sliderV = createSlider(0, 1, 0.6, 0.01);
   sliderV.position((innerWidth * 0.51),(innerHeight * 0.46));
   sliderV.style('transform', 'rotate(270deg)');
   sliderV.style('height', '5px');
+  sliderV.addClass('sliderV');
 
   sliderA = createSlider(0, 5, 0);
   sliderA.position((innerWidth * 0.55),(innerHeight * 0.46));
   sliderA.style('transform', 'rotate(270deg)');
   sliderA.style('height', '5px');
+  sliderA.addClass('sliderA');
     
   sliderS = createSlider(0, 10, 1);
   sliderS.position((innerWidth * 0.58),(innerHeight * 0.46));
   sliderS.style('transform', 'rotate(270deg)');
   sliderS.style('height', '5px');
-
+  sliderS.addClass('sliderS');
+  
   sliderD = createSlider(0.05, 10, 0.1);
   sliderD.position((innerWidth * 0.61),(innerHeight * 0.46));
   sliderD.style('transform', 'rotate(270deg)');
   sliderD.style('height', '5px');
+  sliderD.addClass('sliderD');
 
   sliderR = createSlider(0, 20, 0.1);
   sliderR.position((innerWidth * 0.64),(innerHeight * 0.46));
   sliderR.style('transform', 'rotate(270deg)');
   sliderR.style('height', '5px');
-  
-  // labels
-  fill('red');
-  text('VOL', (innerWidth * 0.303),(innerHeight * 0.51));
-  text('A', (innerWidth * 0.348),(innerHeight * 0.51));
-  text('S', (innerWidth * 0.378),(innerHeight * 0.51));
-  text('D', (innerWidth * 0.408),(innerHeight * 0.51));
-  text('R', (innerWidth * 0.438),(innerHeight * 0.51));
+  sliderR.addClass('sliderR');
+
+// Rotate and Translate Rules/Values
+  angleMode(DEGREES);
 }
 
+// DRAW
 function draw() {
   let c1 = color(20);
   let c2 = color(30, 30, 30, 0);
@@ -102,6 +112,10 @@ function draw() {
     stroke(newc);
     line(0 , y, width, y);
   }
+
+// FPS
+  frameRate(30);
+
 // oscilloscope LOOP
 let fftwave = fft.waveform();
   noFill();
@@ -120,23 +134,62 @@ let fftwave = fft.waveform();
 // Volume  
   outputVolume(sliderV.value());
 
-// Labels
-  // fill('red');
-  // text('VOL', (innerWidth * 0.303),(innerHeight * 0.51));
-  // text('A', (innerWidth * 0.348),(innerHeight * 0.51));
-  // text('S', (innerWidth * 0.378),(innerHeight * 0.51));
-  // text('D', (innerWidth * 0.408),(innerHeight * 0.51));
-  // text('R', (innerWidth * 0.438),(innerHeight * 0.51));
-
 // Shape Generation
-  noFill();
+  // Background
+  fill(0, 0, 0, 0);
   stroke('red');
+  strokeWeight(2);
+  rect(((innerWidth / 2) - (width * 0.85)), ((innerHeight / 2) - (height * 0.19)), ((innerWidth / 3) - (width * 0.2)), ((innerHeight / 2 - (height * 0.001))));
 
+  // // Clipping Mask
+  // push();
+  // clip(mask);
+  // noFill();
+  // rect(((innerWidth / 2) - (width * 0.85)), ((innerHeight / 2) - (height * 0.19)), ((innerWidth / 3) - (width * 0.2)), ((innerHeight / 2 - (height * 0.001))));
+
+  // // Draw Shapes
+  // frameRate(10);
+  // let xPos = random(50, width / 2);
+  // let yPos = random(300, ((height / 2) + (height / 2)));
+  // let scale = random(25, 100);
+  // beginShape();
+  // noFill();
+  // circle(xPos, yPos, scale);
+  // endShape();
+
+  // // End Shape
+  // // End Mask 
+  // pop();
 }
+  // Clip Function
+    function mask() {
+    strokeWeight(1.5);
+      rect(((innerWidth / 2) - (width * 0.85) + 3), ((innerHeight / 2) - (height * 0.19) + 3), ((innerWidth / 3) - (width * 0.2) - 6), ((innerHeight / 2 - (height * 0.001)) - 6));
+    }
 
 // Keyboard
 function keyPressed(){
+  // Clipping Mask
+  push();
+  clip(mask);
+  fill(0,0,0,0);
+  rect(((innerWidth / 2) - (width * 0.85)), ((innerHeight / 2) - (height * 0.19)), ((innerWidth / 3) - (width * 0.2)), ((innerHeight / 2 - (height * 0.001))));
+  // Draw Shapes
+  frameRate(20);
+
+  let xPos = random(50, width / 2);
+  let yPos = random(300, ((height / 2) + (height / 2)));
+  let scale = random(25, 100);
+  beginShape();
+  noFill();
+  circle(xPos, yPos, scale);
+  circle(xPos, yPos, scale * 3);
+  endShape();
+  // End Shape
+  // End Mask 
+  pop();
   
+  // Keys
   if  (key === 'a') {
   osc.start();
   env.triggerAttack();
@@ -421,12 +474,7 @@ function windowResized() {
       vertex(x,y);
     }
     endShape();
-    
-    text('VOL', (innerWidth * 0.303),(innerHeight * 0.51));
-    text('A', (innerWidth * 0.348),(innerHeight * 0.51));
-    text('S', (innerWidth * 0.378),(innerHeight * 0.51));
-    text('D', (innerWidth * 0.408),(innerHeight * 0.51));
-    text('R', (innerWidth * 0.438),(innerHeight * 0.51)); 
+
 } 
 
 

@@ -140,16 +140,6 @@ function setup() {
   sliderRes.style('height', '5px');
   sliderRes.addClass('sliderRes');
 
-  // sliderPitch = createSlider(-12, 12, 0, 0.01);
-  // sliderPitch.position((innerWidth * 0.64),(innerHeight * 0.77));
-  // sliderPitch.style('height', '5px');
-  // sliderPitch.addClass('sliderPitch');
-
-  // sliderLfoTime = createSlider(0.001, 1000, 0, 0.01);
-  // sliderLfoTime.position((innerWidth * 0.64),(innerHeight * 0.83));
-  // sliderLfoTime.style('height', '5px');
-  // sliderLfoTime.addClass('sliderLfoTime');
-
 // Rotate and Translate Rules/Values
   angleMode(DEGREES);
 }

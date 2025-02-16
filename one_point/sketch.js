@@ -9,8 +9,6 @@ let g;
 let h;
 
 
-
-
 function preload(){
   userStartAudio();
   // oscillator, envelope, and volume
@@ -28,7 +26,7 @@ function preload(){
 function setup() {
   createCanvas((windowWidth - (windowWidth * 0.47)), (windowHeight - (windowHeight * 0.1)));
   // Alert
-   window.alert("KEYBOARD LAYOUT: \nCAPS Z - M = Cmaj (Lowest Octave) \nz - ',' = Cmaj (Mid Range) \na - l = Cmaj (Higher Octave) \nw, e, t, y, u, o, p = sharps & flats at respective octaves. \n* CAPS LOCK WILL LOWER ALL NOTES ONE OCTAVE \n* PRESS '?' AT ANY TIME TO RETURN TO THIS KEY");
+  //  window.alert("KEYBOARD LAYOUT: \nCAPS Z - M = Cmaj (Lowest Octave) \nz - ',' = Cmaj (Mid Range) \na - l = Cmaj (Higher Octave) \nw, e, t, y, u, o, p = sharps & flats at respective octaves. \n* CAPS LOCK WILL LOWER ALL NOTES ONE OCTAVE \n* PRESS '?' AT ANY TIME TO RETURN TO THIS KEY");
   //BG Gradient
   let c1 = color(200);
   let c2 = color(100);
@@ -534,9 +532,9 @@ reverb.process(osc, 10, 20);
   env.triggerAttack();
   osc.freq(311.13);
   } 
-  else if (key === '/') {
-    window.alert("KEYBOARD LAYOUT: \nCAPS Z - M = Cmaj (Lowest Octave) \nz - ',' = Cmaj (Mid Range) \na - l = Cmaj (Higher Octave) \nw, e, t, y, u, o, p = sharps & flats at respective octaves. \n* CAPS LOCK WILL LOWER ALL NOTES ONE OCTAVE \n* PRESS '?' AT ANY TIME TO RETURN TO THIS KEY");
-  }
+  // else if (key === '/') {
+  //   window.alert("KEYBOARD LAYOUT: \nCAPS Z - M = Cmaj (Lowest Octave) \nz - ',' = Cmaj (Mid Range) \na - l = Cmaj (Higher Octave) \nw, e, t, y, u, o, p = sharps & flats at respective octaves. \n* CAPS LOCK WILL LOWER ALL NOTES ONE OCTAVE \n* PRESS '?' AT ANY TIME TO RETURN TO THIS KEY");
+  // }
 }
 
 // waveforms
@@ -593,6 +591,8 @@ function windowResized() {
     endShape();
 
 } 
+
+
 
 
 

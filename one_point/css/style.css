@@ -188,7 +188,7 @@ input {
 
 .kb_img {
   display: block;
-  width: 65vw;
+  width: 40vw;
   margin: 0 auto;
   padding: 0;
   left: -25vw;
@@ -197,8 +197,8 @@ input {
 .keyboard {
   display: block;
   position: fixed;
-  width: 70vw;
-  left: 12vw;
+  width: 60vw;
+  left: 17vw;
   top: -10vh;
 }
 
